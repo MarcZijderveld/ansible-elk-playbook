@@ -29,7 +29,26 @@
    destfile: /etc/kibana/kibana.yml
    regexp: 'elasticsearch.url:'
    line: 'elasticsearch.url: "http://localhost:9200"'
-   
+
+# Install X-Pack
+
+- name: Install X-Pack
+  command: /usr/share/elasticsearch/bin/kibana-plugin install x-pack
+
+# Define Elasticsearch username and password.
+
+- name: Defining Kibana User
+  lineinfile:
+   destfile: /etc/kibana/kibana.yml
+   regexp: 'elasticsearch.username'
+   line: 'elasticsearch.url: "kibana'
+
+- name: Defining Kibana Password
+  lineinfile:
+   destfile: /etc/kibana/kibana.yml
+   regexp: 'elasticsearch.password'
+   line: 'elasticsearch.password:'
+
 # Starting Kibana
 
 - name: Starting Kibana
